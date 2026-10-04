@@ -1,0 +1,78 @@
+{
+  "info": {
+    "name": "Notes/Task API",
+    "_postman_id": "notes-task-api-sapphireiq",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000"
+    },
+    {
+      "key": "noteId",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/health"
+      }
+    },
+    {
+      "name": "Create Note",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Learn Express\",\n  \"content\": \"Build a REST API with Node.js and Express\",\n  \"completed\": false\n}"
+        },
+        "url": "{{baseUrl}}/api/notes"
+      }
+    },
+    {
+      "name": "Get All Notes",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/notes"
+      }
+    },
+    {
+      "name": "Get Notes - Filter Sort Pagination",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/notes?completed=false&sort=-createdAt&page=1&limit=5"
+      }
+    },
+    {
+      "name": "Get Note By ID",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/notes/{{noteId}}"
+      }
+    },
+    {
+      "name": "Update Note",
+      "request": {
+        "method": "PUT",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Learn Express + MongoDB\",\n  \"content\": \"CRUD and query features completed\",\n  \"completed\": true\n}"
+        },
+        "url": "{{baseUrl}}/api/notes/{{noteId}}"
+      }
+    },
+    {
+      "name": "Delete Note",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/api/notes/{{noteId}}"
+      }
+    }
+  ]
+}
